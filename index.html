@@ -583,12 +583,10 @@
   /* ============ Card (baby shower) ============ */
   .card {
     position: relative;
-    background: var(--card);
+    background: rgba(255, 255, 255, 0.88);
     border: 1px solid var(--card-border);
     border-radius: 22px;
     padding: clamp(1.75rem, 6vw, 3rem) clamp(1.25rem, 5vw, 2.75rem);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
     box-shadow: 0 18px 50px -28px rgba(11, 35, 66, 0.45);
     text-align: center;
   }
@@ -871,6 +869,7 @@
   @media (prefers-reduced-motion: reduce) {
     .ocean *, .ocean *::before, .ocean *::after {
       animation-duration: 0.01ms !important;
+      animation-delay: 0s !important;
       animation-iteration-count: 1 !important;
       transition-duration: 0.01ms !important;
     }
@@ -1000,7 +999,7 @@
     <section class="section col reveal" id="detalles">
       <div class="card">
         <p class="eyebrow">La celebraci&oacute;n</p>
-        <p class="card-kicker">Baby Shower</p>
+        <h2 class="card-kicker">Baby Shower</h2>
         <p class="card-sub">En honor a la llegada de</p>
         <p class="card-name">Beb&eacute; Wilton Canales</p>
 
@@ -1012,7 +1011,7 @@
 
         <hr class="card-rule">
 
-        <p class="gifts-title">Sugerencias de regalos</p>
+        <h2 class="gifts-title">Sugerencias de regalos</h2>
         <p class="gifts-text">Si bien los regalos siempre son apreciados, una contribuci&oacute;n al fondo del beb&eacute; es igualmente bienvenida. Elijan lo que elijan, simplemente estamos agradecidos de celebrar con ustedes.</p>
 
         <div class="gift-options">
@@ -1021,7 +1020,8 @@
             <polygon class="starfish" points="30,6 35.3,21.3 51.4,21.7 38.6,31.5 43.2,47 30,37.8 16.8,47 21.4,31.5 8.6,21.7 24.7,21.3"/>
           </svg>
           <span class="sinpe">Sinpe: <span class="sinpe-num">8533 7631</span>
-            <button class="copy-btn" id="copy-sinpe" type="button" aria-live="polite">Copiar</button>
+            <button class="copy-btn" id="copy-sinpe" type="button">Copiar</button>
+            <span class="sr-only" id="copy-status" role="status"></span>
           </span>
           <svg class="gift-sep" viewBox="0 0 60 60" aria-hidden="true" focusable="false">
             <polygon class="starfish" points="30,6 35.3,21.3 51.4,21.7 38.6,31.5 43.2,47 30,37.8 16.8,47 21.4,31.5 8.6,21.7 24.7,21.3"/>
@@ -1086,7 +1086,7 @@
 
     <!-- ============ Seabed ============ -->
     <footer class="seabed">
-      <p class="farewell">Nos vemos en Coco&rsquo;s Tiki Bar</p>
+      <h2 class="farewell">Nos vemos en Coco&rsquo;s Tiki Bar</h2>
       <p class="farewell-date">27 &middot; 07 &middot; 2026 &mdash; 2:00 p.&nbsp;m.</p>
 
       <a class="top-hint" href="#arriba" aria-label="Volver arriba">
@@ -1186,8 +1186,22 @@
 
   var prev = { d: null, h: null, m: null, s: null };
   var mode = null; /* null | "countdown" | "today" | "started" | "past" */
+  var countdownHTML = elActive.innerHTML;
 
   function pad(n) { return n < 10 ? "0" + n : "" + n; }
+
+  function restaurarContador() {
+    if (!document.getElementById("cd-days")) {
+      elActive.innerHTML = countdownHTML;
+      elDays = document.getElementById("cd-days");
+      elDaysLbl = document.getElementById("cd-days-lbl");
+      elWord = document.getElementById("count-word");
+      elH = document.getElementById("cd-h");
+      elM = document.getElementById("cd-m");
+      elS = document.getElementById("cd-s");
+    }
+    prev.d = null; prev.h = null; prev.m = null; prev.s = null;
+  }
 
   function setVal(el, key, value, text) {
     if (prev[key] === value) return;
@@ -1203,11 +1217,18 @@
   function setMode(m) {
     if (mode === m) return;
     mode = m;
-    if (m === "today") {
+    if (m === "countdown") {
+      /* restaura el estado normal si el reloj del sistema retrocedio */
+      elCountdown.classList.remove("today");
+      restaurarContador();
+      elNote.textContent = "para celebrar la llegada de Bebé Wilton Canales";
+      elAria.textContent = "";
+    } else if (m === "today") {
+      restaurarContador();
       elCountdown.classList.add("today");
       elWord.textContent = "¡Es hoy!";
-      elNote.textContent = "Nos vemos a las 2:00 p. m. en Coco’s Tiki Bar";
-      elAria.textContent = "El baby shower es hoy, 27 de julio de 2026, a las 2:00 p. m.";
+      elNote.textContent = "Nos vemos a las 2:00 p. m. en Coco’s Tiki Bar";
+      elAria.textContent = "El baby shower es hoy, 27 de julio de 2026, a las 2:00 p. m.";
     } else if (m === "started") {
       elActive.innerHTML = '<p class="today-line">&iexcl;Ya comenzamos!</p>';
       elNote.textContent = "Te esperamos en Coco’s Tiki Bar";
@@ -1285,12 +1306,14 @@
 
   /* ---------- Copiar Sinpe ---------- */
   var copyBtn = document.getElementById("copy-sinpe");
+  var copyStatus = document.getElementById("copy-status");
   if (copyBtn) {
     copyBtn.addEventListener("click", function () {
       var num = "85337631";
       function done(ok) {
         copyBtn.textContent = ok ? "Copiado" : "8533 7631";
-        setTimeout(function () { copyBtn.textContent = "Copiar"; }, 2200);
+        copyStatus.textContent = ok ? "Número de Sinpe copiado al portapapeles" : "No se pudo copiar; el número es 8533 7631";
+        setTimeout(function () { copyBtn.textContent = "Copiar"; copyStatus.textContent = ""; }, 2200);
       }
       if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(num).then(function () { done(true); }, function () { done(false); });
