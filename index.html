@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Te invitamos al Baby Shower — 27 de julio</title>
-<meta name="description" content="Te invitamos al baby shower en honor a la llegada de Bebé Wilton Canales. 27 de julio de 2026, 2:00 p. m., Coco’s Tiki Bar. ¡Te esperamos!">
+<meta name="description" content="Te invitamos al baby shower en honor a la llegada de Baby Wilton Canales. 27 de julio de 2026, 2:00 p. m., Coco’s Tiki Bar. ¡Te esperamos!">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Te invitamos al Baby Shower">
-<meta property="og:description" content="En honor a la llegada de Bebé Wilton Canales — 27 de julio de 2026, 2:00 p. m., Coco’s Tiki Bar. ¡Te esperamos!">
+<meta property="og:description" content="En honor a la llegada de Baby Wilton Canales — 27 de julio de 2026, 2:00 p. m., Coco’s Tiki Bar. ¡Te esperamos!">
 <meta property="og:url" content="https://kryrmz.github.io/recordatorio/">
 <meta property="og:image" content="https://kryrmz.github.io/recordatorio/portada.png">
 <meta property="og:image:width" content="1200">
@@ -15,7 +15,7 @@
 <meta property="og:locale" content="es_CR">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Te invitamos al Baby Shower">
-<meta name="twitter:description" content="En honor a la llegada de Bebé Wilton Canales — 27 de julio de 2026, 2:00 p. m., Coco’s Tiki Bar.">
+<meta name="twitter:description" content="En honor a la llegada de Baby Wilton Canales — 27 de julio de 2026, 2:00 p. m., Coco’s Tiki Bar.">
 <meta name="twitter:image" content="https://kryrmz.github.io/recordatorio/portada.png">
 <style>
   html, body { margin: 0; padding: 0; }
@@ -651,6 +651,43 @@
     width: min(100%, 22rem);
   }
 
+  /* Botones de como llegar */
+  .llegar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem 0.75rem;
+    margin: -0.5rem 0 1.8rem;
+  }
+
+  .llegar-k {
+    font-family: var(--font-sans);
+    font-size: 0.66rem;
+    font-weight: 600;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .mapa-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--deep);
+    text-decoration: none;
+    padding: 0.35rem 0.85rem;
+    border: 1px solid var(--card-border);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.7);
+    transition: transform 0.15s ease, box-shadow 0.2s ease;
+  }
+
+  .mapa-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 14px -8px rgba(11, 35, 66, 0.4); }
+
   .gifts-title {
     font-family: var(--font-serif);
     font-size: 1.05rem;
@@ -876,7 +913,7 @@
           <p class="sr-only" id="cd-aria" aria-live="polite"></p>
         </div>
 
-        <p class="count-note" id="count-note">para celebrar la llegada de Beb&eacute; Wilton Canales</p>
+        <p class="count-note" id="count-note">para celebrar la llegada de Baby Wilton Canales</p>
       </div>
 
       <a class="scroll-hint" href="#detalles" aria-label="Bajar para ver los detalles">
@@ -905,13 +942,25 @@
         <p class="eyebrow" data-i18n="celebracion">La celebraci&oacute;n</p>
         <h2 class="card-kicker">Baby Shower</h2>
         <p class="card-sub" data-i18n="honor">En honor a la llegada de</p>
-        <p class="card-name">Beb&eacute; Wilton Canales</p>
+        <p class="card-name">Baby Wilton Canales</p>
 
         <ul class="facts">
           <li class="fact"><span class="k" data-i18n="fecha">Fecha</span><span class="v" data-i18n="fechaV">27 de julio de 2026</span></li>
           <li class="fact"><span class="k" data-i18n="hora">Hora</span><span class="v" data-i18n="horaV">2:00 p.&nbsp;m.</span></li>
           <li class="fact"><span class="k" data-i18n="lugar">Lugar</span><span class="v">Coco&rsquo;s Tiki Bar</span></li>
         </ul>
+
+        <p class="llegar">
+          <span class="llegar-k" data-i18n="comoLlegar">C&oacute;mo llegar:</span>
+          <a class="mapa-btn" href="https://maps.app.goo.gl/o1DMj1FKQRAWfjuy9" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+            Google Maps
+          </a>
+          <a class="mapa-btn" href="https://waze.com/ul?ll=10.5519781,-85.6933707&amp;navigate=yes&amp;zoom=17" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+            Waze
+          </a>
+        </p>
 
         <hr class="card-rule">
 
@@ -1020,12 +1069,13 @@
       faltan: "Faltan", faltaSing: "Falta",
       dias: "días", diaSing: "día",
       horas: "horas", minutos: "min", segundos: "seg",
-      nota: "para celebrar la llegada de Bebé Wilton Canales",
+      nota: "para celebrar la llegada de Baby Wilton Canales",
       celebracion: "La celebración",
       honor: "En honor a la llegada de",
       fecha: "Fecha", fechaV: "27 de julio de 2026",
       hora: "Hora", horaV: "2:00 p. m.",
       lugar: "Lugar",
+      comoLlegar: "Cómo llegar:",
       regalosTitulo: "Sugerencias de regalos",
       regalosTexto: "Si bien los regalos siempre son apreciados, una contribución al fondo del bebé es igualmente bienvenida. Elijan lo que elijan, simplemente estamos agradecidos de celebrar con ustedes.",
       regalo: "Regalo", sobre: "Sobre con efectivo",
@@ -1059,6 +1109,7 @@
       fecha: "Date", fechaV: "27 July 2026",
       hora: "Time", horaV: "2:00 PM",
       lugar: "Location",
+      comoLlegar: "Directions:",
       regalosTitulo: "Gift suggestions",
       regalosTexto: "While gifts are always appreciated, a contribution to the baby fund is equally welcome. Whatever you choose, we are simply grateful to celebrate with you.",
       regalo: "Gift", sobre: "Envelope with cash",
